@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Card } from '../../Card';
 import style from '../Home/Home.module.scss';
-import { AppContext } from '../../../App';
 import { CardLoader } from '../../CardLoader';
 import { Empty } from '../../Empty';
 import { SearchInput } from '../../SearchInput';
+import { useSelector } from 'react-redux';
 
 export const Favorites = () => {
-	const { cartItems, favoriteItems, isItemsLoading, search } =
-		useContext(AppContext);
+	const { cartItems, favoriteItems, isItemsLoading } = useSelector(
+		state => state.allItems
+	);
+	const search = useSelector(state => state.search);
 
 	return (
 		<div className={style.home}>

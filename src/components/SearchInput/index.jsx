@@ -1,9 +1,12 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../App';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearch } from '../../redux/actions/actionCreators';
 import style from './SearchInput.module.scss';
 
 export const SearchInput = () => {
-	const { search, setSearch } = useContext(AppContext);
+	const dispatch = useDispatch();
+
+	const search = useSelector(state => state.search);
 
 	return (
 		<input
@@ -11,7 +14,7 @@ export const SearchInput = () => {
 			className={style.search}
 			placeholder={'Введите запрос...'}
 			value={search}
-			onChange={e => setSearch(e.target.value)}
+			onChange={e => dispatch(setSearch(e.target.value))}
 		/>
 	);
 };

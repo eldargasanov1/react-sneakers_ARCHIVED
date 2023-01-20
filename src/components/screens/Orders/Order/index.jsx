@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Card } from '../../../Card';
 import style from './Order.module.scss';
-import { AppContext } from '../../../../App';
 import { CardLoader } from '../../../CardLoader';
+import { useSelector } from 'react-redux';
 
 export const Order = ({ title, orderedCartItems }) => {
-	const { isItemsLoading } = useContext(AppContext);
+	const isItemsLoading = useSelector(state => state.allItems.isItemsLoading);
+
 	return (
 		<div className={style.orders}>
 			<div className={style.title}>{title}</div>

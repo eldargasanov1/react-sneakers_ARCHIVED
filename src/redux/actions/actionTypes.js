@@ -1,0 +1,10 @@
+export const SET_ITEMS = 'SET_ITEMS';
+export const SET_CART_ITEMS = 'SET_CART_ITEMS';
+export const SET_FAVORITE_ITEMS = 'SET_FAVORITE_ITEMS';
+export const SET_ORDERS_ITEMS = 'SET_ORDERS_ITEMS';
+export const SET_IS_ITEMS_LOADING = 'SET_IS_ITEMS_LOADING';
+
+export const SET_IS_CART_OPEN = 'SET_IS_CART_OPEN';
+export const SET_IS_ORDERED = 'SET_IS_ORDERED';
+export const SET_SEARCH = 'SET_SEARCH';
+export const SET_TOTAL_PRICE = 'SET_TOTAL_PRICE';

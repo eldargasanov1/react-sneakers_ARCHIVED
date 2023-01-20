@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import style from './CartItem.module.scss';
 import { FiX } from 'react-icons/fi';
-import { AppContext } from '../../App';
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../../redux/actions/asyncActions';
 
-export const CartItem = ({ id, imageUrl, title, price }) => {
-	const { removeFromCart } = useContext(AppContext);
+export const CartItem = ({ id, parentId, imageUrl, title, price }) => {
+	const dispatch = useDispatch();
 
 	return (
 		<div className={style.item}>
@@ -13,7 +14,10 @@ export const CartItem = ({ id, imageUrl, title, price }) => {
 				<div className={style['item__title']}>{title}</div>
 				<div className={style['item__price']}>{price} руб.</div>
 			</div>
-			<button className={style.removeBtn} onClick={() => removeFromCart(id)}>
+			<button
+				className={style.removeBtn}
+				onClick={() => dispatch(removeFromCart(id, parentId))}
+			>
 				<FiX />
 			</button>
 		</div>

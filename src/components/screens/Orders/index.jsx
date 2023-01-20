@@ -1,24 +1,26 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import style from './Orders.module.scss';
-import { AppContext } from '../../../App';
 import { OrderLoader } from './OrderLoader';
 import { Order } from './Order';
 import { Empty } from '../../Empty';
 import { SearchInput } from '../../SearchInput';
+import { useSelector } from 'react-redux';
 
 export const Orders = () => {
-	const { orderItems, isItemsLoading, search } = useContext(AppContext);
+	const { ordersItems, isItemsLoading } = useSelector(state => state.allItems);
+	const search = useSelector(state => state.search);
+
 	return (
 		<div className={style.orders}>
 			<div className={style['title-wrapper']}>
 				<div className={style.title}>Заказы</div>
 				<SearchInput />
 			</div>
-			{orderItems.length ? (
+			{ordersItems.length ? (
 				<div className={style['order-list']}>
 					{isItemsLoading
 						? [...Array(1)].map((item, i) => <OrderLoader key={i} />)
-						: orderItems
+						: ordersItems
 								.filter(item =>
 									item.title.toLowerCase().includes(search.toLowerCase())
 								)

@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FiHeart } from 'react-icons/fi';
 import { FiPlus } from 'react-icons/fi';
 import { FiCheck } from 'react-icons/fi';
 import style from './Card.module.scss';
-import { AppContext } from '../../App';
+import { useDispatch } from 'react-redux';
+import { addToCart, addToFavorites } from '../../redux/actions/asyncActions';
 
 export const Card = ({
 	id,
@@ -15,7 +16,7 @@ export const Card = ({
 	isInFavorites,
 	inOrders,
 }) => {
-	const { addToCart, addToFavorites } = useContext(AppContext);
+	const dispatch = useDispatch();
 
 	return (
 		<div className={style.card}>
@@ -26,7 +27,7 @@ export const Card = ({
 							isInFavorites ? style.active : ''
 						}`}
 						onClick={() =>
-							addToFavorites({ id, parentId, imageUrl, title, price })
+							dispatch(addToFavorites({ id, parentId, imageUrl, title, price }))
 						}
 					>
 						<FiHeart />
@@ -43,7 +44,9 @@ export const Card = ({
 				{!inOrders && (
 					<button
 						className={`${style.plus} ${isInCart ? style.active : ''}`}
-						onClick={() => addToCart({ id, parentId, imageUrl, title, price })}
+						onClick={() =>
+							dispatch(addToCart({ id, parentId, imageUrl, title, price }))
+						}
 					>
 						{isInCart ? <FiCheck /> : <FiPlus />}
 					</button>
